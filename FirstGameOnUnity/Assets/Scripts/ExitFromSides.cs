@@ -6,6 +6,7 @@ public class ExitFromSides : MonoBehaviour
 {
     
     public bool isDead = false;
+    public Camera mainCamera;
 
     void Update()
     {
@@ -20,7 +21,8 @@ public class ExitFromSides : MonoBehaviour
 
     private void RespawnPlayer() 
     {
-    this.transform.position = new Vector3(0, 0, 0);
+    Vector3 cameraPos = mainCamera.transform.position;
+    this.transform.position = new Vector2(cameraPos.x, cameraPos.y);
     this.gameObject.SetActive(true);
     }
 
