@@ -7,6 +7,7 @@ public class ExitFromSides : MonoBehaviour
     
     public bool isDead = false;
     public Camera mainCamera;
+    public string colliderName = "Edge Collider 2D";
 
     void Update()
     {
@@ -17,6 +18,11 @@ public class ExitFromSides : MonoBehaviour
         Invoke("RespawnPlayer", 5f);
         isDead = false;
         }
+
+        // Se il Player viene a contatto con il colliderName, in questo caso: Edge Collider 2D
+        if (Physics2D.IsTouchingLayers(GetComponent<Collider2D>(), LayerMask.GetMask(colliderName)))
+            isDead = true;
+
     }
 
     private void RespawnPlayer() 
@@ -26,16 +32,6 @@ public class ExitFromSides : MonoBehaviour
     this.gameObject.SetActive(true);
     }
 
-    // Questa funzione viene chiamata quando il Player entra in collisione con un altro collider
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Controlliamo se il collider con cui il Player ha colliso è quello della Main Camera
-        if (collision.collider.gameObject.name == "Main Camera")
-        {
-            // Se sì, impostiamo la variabile isDead su true
-            isDead = true;
-        }
-    }
 
     
 }
