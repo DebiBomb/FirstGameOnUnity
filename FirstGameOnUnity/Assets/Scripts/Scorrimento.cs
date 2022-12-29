@@ -10,10 +10,11 @@ public class Scorrimento : MonoBehaviour
     }
 
 
-    [SerializeField]public float scrollSpeed = 5f;
+    [SerializeField]public float scrollSpeed = 2f;
 
     void Update()
     {
         transform.position += Vector3.down * scrollSpeed * Time.deltaTime;
+        scrollSpeed += 0.0002f;
     }
 }
